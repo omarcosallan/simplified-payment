@@ -4,6 +4,7 @@ import com.marcos.simplified_payment.entity.enums.UserType;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -33,4 +34,10 @@ public class User {
 
     @OneToOne(mappedBy = "owner")
     private Wallet wallet;
+
+    @OneToMany(mappedBy = "payer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Transfer> sentTransfers;
+
+    @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Transfer> receivedTransfers;
 }
