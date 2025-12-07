@@ -40,4 +40,13 @@ public class User {
 
     @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Transfer> receivedTransfers;
+
+    public User(UUID id, String fullName, UserType userType, String document, String email, String password) {
+        this.id = id;
+        this.fullName = fullName;
+        this.userType = userType;
+        this.document = document;
+        this.email = email;
+        this.password = password;
+    }
 }
