@@ -55,5 +55,5 @@ Content-Type: application/json
 ## Tecnologias utilizadas
 - Java 21
 - Spring Boot (3.5.8)
-- Sprng Data JPA
+- Spring Data JPA
 - Lombok
