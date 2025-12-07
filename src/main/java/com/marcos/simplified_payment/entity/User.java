@@ -30,4 +30,7 @@ public class User {
     private String email;
 
     private String password;
+
+    @OneToOne(mappedBy = "owner")
+    private Wallet wallet;
 }
