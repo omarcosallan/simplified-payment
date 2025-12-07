@@ -1,6 +1,7 @@
 package com.marcos.simplified_payment.service;
 
 import com.marcos.simplified_payment.entity.Transfer;
+import com.marcos.simplified_payment.exception.BusinessException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,11 @@ public class AuthorizationService {
     private String authApiUrl;
 
     public boolean authorize(Transfer transfer) {
-        ResponseEntity<Map> authorizationResponse = restTemplate.getForEntity(authApiUrl, Map.class);
-        return authorizationResponse.getStatusCode() == HttpStatus.OK;
+        try {
+            ResponseEntity<Map> authorizationResponse = restTemplate.getForEntity(authApiUrl, Map.class);
+            return authorizationResponse.getStatusCode() == HttpStatus.OK;
+        } catch (Exception e) {
+            throw new BusinessException("Transfer not authorized");
+        }
     }
 }
